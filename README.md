@@ -1,2 +1,2 @@
 # config-files
-These are some of my configuration files for arch, enjoy it!
+My config files for my Arch Linux installation, qutebrowser and xfce4 folders are forked from Jan-Pieter Baert's.
