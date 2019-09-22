@@ -1,0 +1,7 @@
+! Rofi config file
+rofi.theme: ~/config-files/rofi/oxide.rasi
+rofi.lines: 20
+rofi.show-icons: true
+rofi.modi: drun,run
+rofi.display-drun: Search
+rofi.font: Iosevka 11

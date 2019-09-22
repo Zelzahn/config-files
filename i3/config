@@ -1,0 +1,314 @@
+# i3 config file (v4)
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+#systemctl start bluetooth.service &
+
+# Network applet for setting (and managing) network connections (e.g. wifi)
+exec nm-applet & # runs in i3bar (network manager)
+exec blueman-applet & # runs in i3bar (bluetooth manager)
+
+# Compton settings & start up
+# exec compton -bc -r3 -1 -4 -t -4 --shadow-exclude '_GTK_FRAME_EXTENTS@:c' &
+exec compton --blur-method kawase --blur-strength 13 --backend glx
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 14
+
+# Set wallpaper
+exec_always --no-startup-id "feh --bg-scale ~/config-files/i3/kampSfeer.jpg"
+#exec ---no-startup-id xsetroot -solid "#FFFFFF" &
+
+exec --no-startup-id spotify &
+
+# Num lock on
+exec --no-startup-id numlockx &
+
+# kill the old xss-lock and start a new one, to make sure one is running
+exec_always --no-startup-id "killall xss-lock; xss-lock fancy_lock"
+
+#start flux
+exec --no-startup-id fluxgui &
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:Iosevka 14
+
+# set super mods (at the moment Windows is $mod and Alt is $mod2)
+set $mod Mod4
+set $mod2 Mod1
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+# the directions are like vim!
+#set $up k
+#set $down j
+#set $left h
+#set $right m 
+
+# use Mouse+$mod to drag floating windows to their wanted positif1d08eon
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec konsole 
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# Rofi things, it's just the best ever, MAKE ROFI GREAT AGAIN!
+	# Show all installed applications (program list)
+	bindsym $mod+r exec rofi -show drun
+	# Show all installed packages
+	bindsym $mod+h exec rofi -show run
+	# my (local) passwordmanager (unix pass)
+	#bindsym $mod+bracketright exec rofi-pass
+
+# start dmenu (a program launcher)
+# dmenu with some cool colors
+#bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#6F7700' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
+#bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+	bindsym $mod+$left focus left
+	bindsym $mod+$down focus down
+	bindsym $mod+$up focus up
+	bindsym $mod+$right focus right
+
+	# focus the parent container
+	bindsym $mod+a focus parent
+	
+	# focus the child container
+	bindsym $mod+z focus child
+
+
+# alternatively, you can use the cursor keys:
+	bindsym $mod+Left focus left
+	bindsym $mod+Down focus down
+	bindsym $mod+Up focus up
+	bindsym $mod+Right focus right
+
+# move focused window
+	bindsym $mod+Shift+$left move left
+	bindsym $mod+Shift+$down move down
+	bindsym $mod+Shift+$up move up
+	bindsym $mod+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+	bindsym $mod+Shift+Left move left
+	bindsym $mod+Shift+Down move down
+	bindsym $mod+Shift+Up move up
+	bindsym $mod+Shift+Right move right
+
+# change container layout (stacked, tabbed, toggle split)
+	##bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+x layout toggle split
+
+# Change split mode 
+	# split in horizontal orientation
+	bindsym $mod+g split h
+	
+	# split in vertical orientation
+	bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+## I don't use a scratchpad because I have enough workspaces
+	# move the currently focused window to the scratchpad
+	#bindsym $mod+Shift+minus move scratchpad
+	
+	# Show the next scratchpad window or hide the focused scratchpad window.
+	# If there are multiple scratchpad windows, this command cycles through them.
+	#bindsym $mod+minus scratchpad show
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+# We have 13 workspaces because the number row on my keyboard has 3 keys except for the 10 numbers also fuck people who think 13 brings them bad luck
+	set $ws1 "1:Home"
+	set $ws2 "2:Spotify"
+	set $ws3 "3:Random"
+	set $ws4 "4:Mail"
+	set $ws5 "5|Multi"
+	set $ws6 "6|SEL1"
+	set $ws7 "7|WebDev""
+
+# switch to workspace
+	bindsym $mod+1 workspace $ws1
+	bindsym $mod+2 workspace $ws2
+	bindsym $mod+3 workspace $ws3
+	bindsym $mod+4 workspace $ws4
+	bindsym $mod+5 workspace $ws5
+	bindsym $mod+6 workspace $ws6
+	bindsym $mod+7 workspace $ws7
+
+# move focused container to workspace
+	bindsym $mod+Shift+1 move container to workspace $ws1
+	bindsym $mod+Shift+2 move container to workspace $ws2
+	bindsym $mod+Shift+3 move container to workspace $ws3
+	bindsym $mod+Shift+4 move container to workspace $ws4
+	bindsym $mod+Shift+5 move container to workspace $ws5
+	bindsym $mod+Shift+6 move container to workspace $ws6
+	bindsym $mod+Shift+7 move container to workspace $ws7
+
+# workspace mods (move to the next or prev open workspace on current display)
+	bindsym --whole-window $mod+Tab workspace next_on_output
+	bindsym --whole-window $mod+Shift+Tab workspace prev_on_output
+
+#workspace assignment
+assign [class="Spotify"] $ws2
+assign [class="Thunderbird"] $ws4
+
+# Locks the screen
+bindsym $mod+l exec ~/config-files/i3/i3scripts/lock.sh
+
+# Opens thunar (file explorer)
+bindsym $mod+e exec thunar
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+#indsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+	mode "Scale" {
+	        # These bindings trigger as soon as you enter the resize mode
+	
+	        # Pressing left will shrink the window’s width.
+	        # Pressing right will grow the window’s width.
+	        # Pressing up will shrink the window’s height.
+	        # Pressing down will grow the window’s height.
+	        bindsym $left       resize shrink width 5 px or 5 ppt
+	        bindsym $dowcn       resize grow height 5 px or 5 ppt
+	        bindsym $up         resize shrink height 5 px or 5 ppt
+	        bindsym $right      resize grow width 5 px or 5 ppt
+	
+	        # same bindings, but for the arrow keys
+	        bindsym Left        resize shrink width 5 px or 5 ppt
+	        bindsym Down        resize grow height 5 px or 5 ppt
+	        bindsym Up          resize shrink height 5 px or 5 ppt
+	        bindsym Right       resize grow width 5 px or 5 ppt
+	
+	        # back to normal: Enter or Escape or $mod+r
+	        bindsym Return mode "default"
+	        bindsym Escape mode "default"
+	        bindsym $mod+r mode "default"
+	}
+	
+	bindsym $mod+s mode "Scale"
+
+# Mode to logout, reboot or shutdown
+	mode "[l]ogout / [h]ibernate / [r]eboot / [s]hutdown / [p]ower saving" {
+		bindsym l exit
+		bindsym h exec hibernate_lock
+		bindsym r exec reboot
+		bindsym s exec shutdown now
+		bindsym p exec sudo tlp start
+		bindsym Escape mode "default"
+	}
+	# bindsym $mod+x mode "[l]ogout / [h]ibernate / [r]eboot / [s]hutdown / [p]ower saving"
+
+# Set some cool colors for i3
+	# class                 border  bground text    indicator child_border
+	client.focused          #004F00 #8C9440 #F1D08E #00004F   #FCE8C3
+	client.focused_inactive #333333 #B1B779 #FCE8C3 #484E50   #5F676A
+	client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+	client.urgent           #2F343A #900000 #FCE8C3 #900000   #900000
+	client.placeholder      #000000 #0C0C0C #FCE8C3 #000000   #0C0C0C
+	
+	client.background       #FFFFFF
+
+# Title bar formatting
+	for_window [class=".*"] title_format " %class"
+
+# Bar settings and hotkeys
+	# Start the i3bar which contains some cool stuff and information from the i3blocks command, there are also a few awesome color settings
+	bar {	
+		font pango:Iosevka 12
+		strip_workspace_numbers yes
+	        hidden_state hide
+	        position bottom 
+	        status_command i3blocks -c ~/config-files/i3/i3blocks.conf
+
+
+	    colors {
+	    	background #1C1B19
+	    	statusline #FCE8C3
+	    	separator  #FCE8C3
+		
+		#		   Border  Background Text
+	    	focused_workspace  #1C1B19 #1d1f21 #FFFFFF
+	    	active_workspace   #333333 #000000 #FCE8C3
+	    	inactive_workspace #333333 #1C1B19 #cebe9f
+	    	urgent_workspace   #2F343A #900000 #FCE8C3
+	    	binding_mode       #2F343A #900000 #FCE8C3
+	  }
+	}
+	
+	# Make it possible to toggle the bar to be hidden
+	bindsym $mod+backslash bar mode toggle
+
+#Using below keybindings we can give a certain windw a bar or not 
+	bindsym $mod+$mod2+b border normal
+	bindsym $mod+$mod2+n border pixel 0
+
+# Reduce gaps to basically an indicator where the focus is
+	# Set the borderwidth to 1 pixel, almost borderless, but you can see focus + other border/gaps modifications
+	for_window [class="^.*"] border none
+	gaps inner 10
+	gaps outer -4
+	smart_gaps on
+	new_float normal 10
+	hide_edge_borders smart
+
+#Move to top right, for video playing
+bindsym $mod+y floating enable; resize set 375 225; sticky enable; move window to position 1400 75
+
+# Media player conttrols
+	bindsym XF86AudioPlay exec playerctl play-pause
+	bindsym XF86AudioNext exec playerctl next
+	bindsym XF86AudioPrev exec playerctl previous
+
+#floating windows
+	for_window [class="GParted"] floating enable
+	for_window [class="Pavucontrol"] floating enable
+	for_window [class="Arandr"] floating enable
+	for_window [class="Shutter"] floating enable
+
+# Sreen brightness controls
+	# increase screen brightness
+	bindsym XF86MonBrightnessUp exec "~/config-files/i3/i3scripts/changebacklight.sh up" 
+	# decrease screen brightness
+	bindsym XF86MonBrightnessDown exec "~/config-files/i3/i3scripts/changebacklight.sh down" 
+
+# Pulse Audio controls
+	bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 2 #increase sound volume
+	bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 2  #decrease sound volume
+	bindsym XF86AudioMute exec --no-startup-id pamixer -t # mute sound by dailing back the volume to 0
+
+# Select a region and copy it to the clipboard
+bindsym Print exec maim -s | xclip -selection clipboard -t image/png
+
+# Used to configure my screens layout when a new one connects
+bindsym $mod+p exec --no-startup-id "xrandr --auto;arandr"
+
+
+
