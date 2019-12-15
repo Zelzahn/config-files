@@ -1,0 +1,206 @@
+/* Remember to change your username */
+/* @import url('file:///home/USERNAME/.cache/wal/colors.css'); */
+
+window#main-window {
+    --toolbar-bgcolor: #111111 !important;
+    --lwt-accent-color: #111111 !important;
+    --lwt-toolbar-field-background-color: #111111 !important;
+    --lwt-toolbar-field-color: #FCE8C3 !important;
+    --chrome-content-separator-color: none !important;
+    --backbutton-background: none !important;
+    --arrowpanel-background: #111111 !important;
+    --arrowpanel-border-color: #111111 !important;
+
+    --lwt-sidebar-background-color: #111111 !important;
+}  
+
+:root:not([customizing]) #nav-bar toolbarbutton
+ {
+    margin-left: -28px !important;
+    opacity: 0 !important;
+    transform: scale(.85, .85) !important;
+    pointer-events: none !important;
+    transition: all 100ms var(--animation-easing-function) !important;
+}
+
+:root:not([customizing]) :hover > #nav-bar toolbarbutton,
+:root:not([customizing]) #navigator-toolbox:focus-within #nav-bar toolbarbutton,
+:root:not([customizing]) :hover > #titlebar toolbarbutton {
+    transform: scale(1, 1) !important;
+opacity:1 !important;
+margin-left:0 !important;
+pointer-events: auto !important;
+}
+
+textbox {
+    background-color: #111111 !important;
+    border: none !important;
+}
+
+vbox[style], hbox[style] {
+  background-color: #111111 !important;
+  border: none !important;
+}
+.sidebar-placesTree {
+    background-color: #111111 !important;
+    border: none !important;
+}
+:root[lwt-popup-brighttext] {
+    --panel-separator-color: #111111 !important;
+    border: none !important;
+}
+
+#sidebar-header {
+    border: none !important;
+}
+
+:root:not([uidensity="compact"]):not([chromehidden~="toolbar"]) #nav-bar[brighttext] > #PanelUI-button {
+    border-image-source: linear-gradient(transparent, transparent) !important;
+}
+
+#urlbar,
+#searchbar {
+    color: #FCE8C3 !important;
+    border: none !important;
+}
+
+#tabs-newtab-button,
+#PersonalToolbar, 
+#identity-box,
+#tracking-protection-icon-container,
+.urlbar-icon, .tab-icon-image {
+    display: none !important;
+}
+
+#toolbar-menubar:not([autohide="true"])+#TabsToolbar .tabbrowser-tab>.tab-stack>.tab-background,
+:root:not([tabsintitlebar]) .tab-background,
+:root[extradragspace] .tab-background {
+    border-top: 0 !important;
+}
+
+.tab-line {
+    height: 0 !important;
+}
+
+.close-icon {
+    display: none !important;
+}
+
+#page-action-buttons>*:not(#star-button-box),
+.urlbar-history-dropmarker {
+    opacity: 0 !important;
+}
+
+#urlbar:hover #page-action-buttons>*,
+#urlbar:hover .urlbar-history-dropmarker {
+    opacity: 1 !important;
+}
+
+/* Removal of black bottom 1px line */
+#navigator-toolbox::after {
+    display: none !important;
+}
+
+menubar,
+menubutton,
+menulist,
+menu,
+menuitem,
+textbox,
+toolbar,
+tab,
+tree,
+.tree-rows {
+    font-family: 'Input Condensed', monospace !important;
+    font-size: 10pt !important;
+    font-weight: bold;
+    font-style: normal !important;
+    -moz-appearance: none !important;
+    color: var(--color7) !important;
+}
+
+#navigator-toolbox {
+    --tabs-border-color: none !important;;
+
+}
+
+/* This removes the tab separators */
+.tabbrowser-tab::before,
+.tabbrowser-tab::after {
+    display: none !important;
+}
+
+.tab-background[selected=true] {
+  color: #111111 !important;
+}
+
+/* This moves the tabs under the URL bar */
+#titlebar {
+    -moz-box-ordinal-group: 3 !important;
+  }
+.tabbrowser-tab {
+    /* transition: color 0.25s !important; */
+    text-align: center !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabbrowser-tab[selected="true"], .tab-label-container[selected="true"] {
+  color: #c33dab !important;
+}
+
+.chromeclass-location {
+    border: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    
+}
+
+.urlbarView:not(.megabar) {
+    box-shadow: none !important;
+    background-color: #111111 !important;
+    font-family: 'Input Condensed', monospace !important;
+    font-size: 10pt !important;
+}
+
+.urlbarView-favicon {
+    display: none !important;
+}
+
+.urlbarView-row[selected] {
+    background: #c33dab !important;
+    color: #111111 !important;
+    fill-opacity: 1 !important;;
+}
+
+.sidebar-splitter {
+
+    -moz-appearance: none;
+    border: none !important;
+}   
+    
+.customization-target {
+    padding: 12px !important;   
+}
+
+/* Hides tab bar when there's only one tab. */
+#main-window[titlepreface^="[1] "] .toolbar-items {
+  visibility: collapse;
+}
+
+#main-window[titlepreface^="[1] "] #TabsToolbar {
+  min-height: 0 !important;
+}
+
+#statuspanel #statuspanel-label, statuspanel .statuspanel-label {
+  background-color: red;
+  background: var(--arrowpanel-background) !important;
+  color: var(--lwt-toolbar-field-color, black) !important;
+  border-color: var(--panel-separator-color) !important;
+}
+
+
+hbox{
+ height: 40px;
+}

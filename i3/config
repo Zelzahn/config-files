@@ -141,13 +141,13 @@ bindsym $mod+space focus mode_toggle
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 # We have 13 workspaces because the number row on my keyboard has 3 keys except for the 10 numbers also fuck people who think 13 brings them bad luck
-	set $ws1 "1:Home"
-	set $ws2 "2:Spotify"
-	set $ws3 "3:Random"
-	set $ws4 "4:Mail"
-	set $ws5 "5|Multi"
-	set $ws6 "6|SEL1"
-	set $ws7 "7|WebDev""
+	set $ws1 "1"
+	set $ws2 "2"
+	set $ws3 "3"
+	set $ws4 "4"
+	set $ws5 "5"
+	set $ws6 "6"
+	set $ws7 "7"
 
 # switch to workspace
 	bindsym $mod+1 workspace $ws1
@@ -215,20 +215,9 @@ bindsym $mod+Shift+r restart
 	
 	bindsym $mod+s mode "Scale"
 
-# Mode to logout, reboot or shutdown
-	mode "[l]ogout / [h]ibernate / [r]eboot / [s]hutdown / [p]ower saving" {
-		bindsym l exit
-		bindsym h exec hibernate_lock
-		bindsym r exec reboot
-		bindsym s exec shutdown now
-		bindsym p exec sudo tlp start
-		bindsym Escape mode "default"
-	}
-	# bindsym $mod+x mode "[l]ogout / [h]ibernate / [r]eboot / [s]hutdown / [p]ower saving"
-
 # Set some cool colors for i3
 	# class                 border  bground text    indicator child_border
-	client.focused          #004F00 #8C9440 #F1D08E #00004F   #FCE8C3
+	client.focused          #111111 #111111 #F1D08E #00004F   #FCE8C3
 	client.focused_inactive #333333 #B1B779 #FCE8C3 #484E50   #5F676A
 	client.unfocused        #333333 #222222 #888888 #292D2E   #222222
 	client.urgent           #2F343A #900000 #FCE8C3 #900000   #900000
@@ -241,27 +230,27 @@ bindsym $mod+Shift+r restart
 
 # Bar settings and hotkeys
 	# Start the i3bar which contains some cool stuff and information from the i3blocks command, there are also a few awesome color settings
-	bar {	
-		font pango:Iosevka 12
-		strip_workspace_numbers yes
-	        hidden_state hide
-	        position bottom 
-	        status_command i3blocks -c ~/config-files/i3/i3blocks.conf
-
-
-	    colors {
-	    	background #1C1B19
-	    	statusline #FCE8C3
-	    	separator  #FCE8C3
-		
-		#		   Border  Background Text
-	    	focused_workspace  #1C1B19 #1d1f21 #FFFFFF
-	    	active_workspace   #333333 #000000 #FCE8C3
-	    	inactive_workspace #333333 #1C1B19 #cebe9f
-	    	urgent_workspace   #2F343A #900000 #FCE8C3
-	    	binding_mode       #2F343A #900000 #FCE8C3
-	  }
-	}
+#	bar {
+#		font pango:Iosevka 12
+#		# strip_workspace_numbers yes
+#	        # hidden_state hide
+#	        position top
+#	        status_command i3blocks -c ~/config-files/i3/i3blocks.conf
+#
+#
+#	    colors {
+#	    	background #1C1B19
+#	    	statusline #FCE8C3
+#	    	separator  #FCE8C3
+#		
+#		#		   Border  Background Text
+#	    	focused_workspace  #1C1B19 #1d1f21 #FFFFFF
+#	    	active_workspace   #333333 #000000 #FCE8C3
+#	    	inactive_workspace #333333 #1C1B19 #cebe9f
+#	    	urgent_workspace   #2F343A #900000 #FCE8C3
+#	    	binding_mode       #2F343A #900000 #FCE8C3
+#	  }
+#	}
 	
 	# Make it possible to toggle the bar to be hidden
 	bindsym $mod+backslash bar mode toggle
@@ -272,10 +261,10 @@ bindsym $mod+Shift+r restart
 
 # Reduce gaps to basically an indicator where the focus is
 	# Set the borderwidth to 1 pixel, almost borderless, but you can see focus + other border/gaps modifications
-	for_window [class="^.*"] border none
-	gaps inner 10
-	gaps outer -4
-	smart_gaps on
+	for_window [class="^.*"] border pixel 0 
+	gaps inner 20
+	gaps outer -7
+	#smart_gaps on
 	new_float normal 10
 	hide_edge_borders smart
 
@@ -305,10 +294,8 @@ bindsym $mod+y floating enable; resize set 375 225; sticky enable; move window t
 	bindsym XF86AudioMute exec --no-startup-id pamixer -t # mute sound by dailing back the volume to 0
 
 # Select a region and copy it to the clipboard
-bindsym Print exec maim -s | xclip -selection clipboard -t image/png
+bindsym Print exec scrot -s | xclip -selection clipboard -t image/png
 
-# Used to configure my screens layout when a new one connects
+exec_always --no-startup-id /home/zelzahn/config-files/polybar/launch.sh
+
 bindsym $mod+p exec --no-startup-id "xrandr --auto;arandr"
-
-
-

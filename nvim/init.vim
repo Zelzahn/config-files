@@ -1,4 +1,6 @@
-" Plugins
+" ------- "
+" Plugins "
+" ------- "
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Better status bar at the bottom
@@ -7,62 +9,92 @@ Plug 'vim-airline/vim-airline'
 Plug 'rstacruz/vim-closer'
 " Downloads the colorscheme
 Plug 'srcery-colors/srcery-vim'
-" Atom colorscheme
-Plug 'rakr/vim-one'
-" NERDTree is a ls in nvim :O
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
 call plug#end()
 
-" Changes the NERDTree toggle and the find
-let NERDTreeHijackNetrw = 0
-noremap <silent> <leader>n :NERDTreeToggle<CR> <C-w>=
-noremap <silent> <leader>f :NERDTreeFind<CR> <C-w>=
+" ------- "
+" General "
+" ------- "
 
-" Start NERDTree on nvim startup
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" Autorefreshes NERDTree, useful for when a file outside vim is created
-function! NERDTreeRefresh()
-    if &filetype == "nerdtree"
-        silent exe substitute(mapcheck("R"), "<CR>", "", "")
-    endif
-endfunction
-
-autocmd BufEnter * call NERDTreeRefresh()
-
-" Changes the leader to something usable on AZERTY
-let mapleader = "<"
-
-" Displays line numbers
+"let mapleader=" "
+set nocompatible
+syntax on
+set t_Co=256
+colorscheme srcery
+set encoding=utf-8
 set number
+set pastetoggle=<F2>
+set mouse=a
+set colorcolumn=80
+set ruler
+set number
+set scrolloff=999
+set laststatus=2
+set wildmenu
 
-" Disables the (annoying) bell
+" disables the bell
 set noerrorbells
 set visualbell
 set t_vb=
 
-" Makes it possible to use the mouse for changing the cursor
-set mouse=a
-
-" Syntax highlighting using the srcery colorscheme and 256 colors
-syntax on
-set t_Co=256
-colorscheme srcery
-" set background=dark
-
-" Copy pasting
+" Keybinds
+map <C-a> <ESC>ggVG
 vmap <C-c> "+yi
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
 
-set laststatus=2
-set ruler
-set number
-set relativenumber
-set scrolloff=4
-set showmatch
-set wildmenu
-set colorcolumn=80
+" spellcheck
+map <F6> :setlocal spell! spelllang=nl,en<CR>
+inoremap <F6> <Esc>:setlocal spell! spelllang=nl,en<CR>a
+inoremap ,p <Esc>[sz=a
+inoremap ,n <Esc>]sz=a
+
+" guide navigation
+inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+map <Space><Tab> <Esc>/<++><Enter>"_c4l
+
+" templates
+" map la :read<space>~/.vim/startup_files/config.tex<Enter>:1<Enter>dd:w<Enter>:edit<Enter>:23<Enter>f}i
+" map cpp :read<space>~/.vim/startup_files/config.cpp<Enter>:1<Enter>dd:w<Enter>:$<Enter>i
+
+" ------ "
+" Python "
+" ------ "
+
+au FileType python setlocal autoindent
+
+" ---- "
+" Bash "
+" ---- "
+
+au FileType sh setlocal autoindent
+
+" ----- "
+" Latex "
+" ----- "
+
+au FileType tex map <F5> :w<Enter>:!xelatex<space><c-r>%<Enter>
+au FileType tex inoremap <F5> <Esc>:w<Enter>:!xelatex<space><c-r>%<Enter>a
+au FileType tex inoremap ,eq \begin{equation}<Enter><Enter>\end{equation}<Enter><Enter><++><Esc>3ki
+au FileType tex inoremap ,eqm \begin{equation}<Enter>\begin{aligned}<Enter><Enter>\end{aligned}<Enter>\end{equation}<Enter><Enter><++><Esc>4ki
+au FileType tex inoremap ,se \section{<++>}<Enter><Enter><++><Esc>2k0/s<Enter>i
+au FileType tex inoremap ,fr \frac{}{<++>}<++><Esc>0f}i
+
+
+"---"
+"c++"
+"---"
+
+au FileType cpp setlocal autoindent
+au FileType cpp setlocal cindent
+au FileType cpp setlocal expandtab
+au FileType cpp setlocal tabstop=4
+au FileType cpp setlocal shiftwidth=4
+au FileType cpp map <F5> :w<Enter>:!g++<space>-std=c++11<space>-Wall<space>-O3<space>-o<space>%:r<space>%<Enter>
+au FileType cpp inoremap <F5> <Esc>:w<Enter>:!g++<space>-std=c++11<space>-Wall<space>-O3<space>-o<space>%:r<space>%<Enter>a
+au FileType cpp map <F4> :!./%:r<Enter>
+au FileType cpp inoremap <F4> <Esc>:!./%:r<Enter>a
+au FileType cpp inoremap ,cl (<++>)<Enter>{<Enter><++><Enter>}<Enter><++><Esc>4k0f(i
+au FileType cpp inoremap ,for for<space>()<Enter>{<Enter><++><Enter>}<Enter><++><Esc>4k0f)i
