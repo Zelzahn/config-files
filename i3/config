@@ -179,7 +179,7 @@ assign [class="Thunderbird"] $ws4
 bindsym $mod+l exec ~/config-files/i3/i3scripts/lock.sh
 
 # Opens thunar (file explorer)
-bindsym $mod+e exec thunar
+bindsym $mod+e exec nautilus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -293,9 +293,15 @@ bindsym $mod+y floating enable; resize set 375 225; sticky enable; move window t
 	bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 2  #decrease sound volume
 	bindsym XF86AudioMute exec --no-startup-id pamixer -t # mute sound by dailing back the volume to 0
 
+# yet-another-spotify
+# bindsym $mod+Shift+Delete exec st -n Lyrics -e spotify-lyrics
+# for_window [instance="Lyrics"] floating enable; [instance="Lyrics"] move position center
+# for_window [instance="Lyrics"] resize set 644 388
+
 # Select a region and copy it to the clipboard
 bindsym Print exec scrot -s | xclip -selection clipboard -t image/png
 
 exec_always --no-startup-id /home/zelzahn/config-files/polybar/launch.sh
+# exec --no-startup-id dunst -config /home/zelzahn/config-file/dunst/dunstrc 
 
 bindsym $mod+p exec --no-startup-id "xrandr --auto;arandr"

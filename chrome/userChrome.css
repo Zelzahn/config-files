@@ -87,7 +87,7 @@ window#main-window {
 	--panel-disabled-color: var(--color-0) !important;
 	--panel-separator-color: var(--color-bg) !important;
 
-	--tab-min-height: 33px;
+	--tab-min-height: 20px;
 	--tabs-top-border-width: 1px;
 
 	--toolbar-bgcolor: var(--color-bg) !important;
@@ -394,8 +394,10 @@ hbox#urlbar[focused=true] {
 	) !important;
 }
 
-#tabs-newtab-button {
-	background-image: none !important;
+toolbarbutton#tabs-newtab-button {
+  background-image: none !important;
+  padding-left: 10px !important;
+  margin: -10px !important;
 }
 
 #tabs-newtab-button:hover {
