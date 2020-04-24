@@ -1,3 +1,19 @@
+/*
+Built using the base: https://github.com/turing753/minimal-functional-fox
+
+To get the window buttons:
+https://addons.mozilla.org/sv-SE/firefox/addon/os-style-close-window-button/
+https://addons.mozilla.org/sv-SE/firefox/addon/os-style-minimze-window-button/
+https://addons.mozilla.org/sv-SE/firefox/addon/os-style-maxmize-window-button/
+*/
+
+* {
+	font-kerning: auto;
+	font-family: "SF Pro Display" !important;
+	font-weight: 500 !important;
+	// letter-spacing: 0.3px;
+}
+
 window#main-window {
 	/* *******************************************************************
 	You can tweak the major colors here, the names should
@@ -6,17 +22,23 @@ window#main-window {
 	--color-* vars.
 	*/
 
-	--color-fg   : #fefefa;
-	--color-bg   : #282a36;
+	--color-fg   : #ffffff;
+	--color-bg   : #262626;
 	--color-0    : #43c9cf;
 	--color-1    : #d0d01e;
 	--color-2    : #fc6b89;
 	--color-3    : #bc6ccc;
 	--color-4    : #f79130;
-	--color-5    : #ead2ef;
-  --color-6    : #fce8c3;
+	--color-5    : #f2a24f;
 
-	--color-tab-active-end       : var(--color-4);
+	--color-tab-active  : #9e9ea0;
+	--color-tab-hover   : #68686b;
+
+	--color-fg-active   : var(--color-fg);
+	--color-fg-hover    : var(--color-fg);
+	--color-fg-inactive : #888888;
+
+	--color-tab-active-end       : #68686b;
 	--color-tab-active-start     : var(--color-2);
 	--color-tab-hover-end        : var(--color-0);
 	--color-tab-hover-start      : var(--color-3);
@@ -24,28 +46,31 @@ window#main-window {
 	--color-tab-normal-start     : var(--color-bg);
 	--color-tab-pinned-active    : var(--color-2);
 	--color-tab-pinned-normal    : var(--color-5);
-	--color-urlbar-buttons-bg    : #fc6b89;
-	--color-urlbar-text          : var(--color-5);
+	--color-urlbar-buttons-bg    : #262626;
+	--color-urlbar-text          : var(--color-fg);
 
 	
 	/* Easy way to tweak most params */
 
-	--gap-between-tabs                   : 10px;
+	--gap-between-tabs                   : 0px;
 	--margin-around-urlbar               : 9px;
-	--margin-before-back-button          : 9px;
+	--margin-before-back-button          : 5px;
 	--padding-around-searchengine-opts   : 10px;
-	--pinned-tab-favicon-dim             : 20px;
-	--tab-height                         : 35px;
-	--tabs-container-height              : 120px;
-	--tab-text-font                      : "Hasklug Nerd Font", sans-serif;
-	--tab-text-font-size                 : 12pt;
-	--margin-before-tab-list             : 16px;
-	--margin-after-tab-list              : -17px;
-	--urlbar-text-font                   : "mononoki Nerd Font", sans-serif;
-	--urlbar-text-size                   : 12pt;
-	--urlbar-text-weight                 : 600;
+	--pinned-tab-favicon-dim             : 27px;
+	--tab-height                         : 0px;
+	--tab-width                          : 190px;
+	--tab-radius                         : 0px;
+	--tabs-container-height              : 0px;
+	--tab-text-font                      : "SF Pro Display" !important;
+	--tab-text-font-size                 : 9pt;
+	--tab-text-weight                    : 700 !important;
+	--margin-before-tab-list             : 0px;
+	--margin-after-tab-list              : 0px;
+	--urlbar-text-font                   : "SF Pro Display" !important;
+	--urlbar-text-size                   : 10pt;
+	--urlbar-text-weight                 : 500;
 	--urlbar-list-width                  : 50%;
-	--urlbar-container-margin            : 12px;
+	--urlbar-container-margin            : 1px;
 
 
 	/* ******************************************************************* */
@@ -87,21 +112,22 @@ window#main-window {
 	--panel-disabled-color: var(--color-0) !important;
 	--panel-separator-color: var(--color-bg) !important;
 
-	--tab-min-height: 20px;
-	--tabs-top-border-width: 1px;
+	--tab-min-height: 0px;
+	--tabs-top-border-width: 0px;
 
 	--toolbar-bgcolor: var(--color-bg) !important;
-	--toolbar-bgimage: none;
+	--toolbar-bgimage: linear-gradient(#3d3e43, #373739) !important;
 	--toolbar-color: var(--color-fg) !important;
 	--toolbar-non-lwt-bgimage: var(--color-bg) !important;
+
 	--toolbarbutton-active-background: var(--color-bg) !important;
 	--toolbarbutton-focus-outline: var(--color-bg) !important;
-	--toolbarbutton-height: 0;
-	--toolbarbutton-hover-background: var(--color-bg) !important;
+	--toolbarbutton-height: 20px;
+	--toolbarbutton-hover-background: none !important;
 	--toolbarbutton-hover-transition-duration: 150ms;
 	--toolbarbutton-icon-fill-opacity: 1;
-	--toolbarbutton-inner-padding: 12px !important;
-	--toolbarbutton-outer-padding: 4px !important;
+	--toolbarbutton-inner-padding: 5px !important;
+	--toolbarbutton-outer-padding: 0px !important;
 
 	--urlbar-popup-action-color: var(--color-fg) !important;
 	--urlbar-popup-url-color: var(--color-fg) !important;
@@ -119,6 +145,11 @@ window#history-panel {
 }
 
 
+#PanelUI-button {
+  border-top: 1px solid #5f6068;
+  padding-left: 5px !important;
+  padding-right: 10px !important;
+}
 
 
 /*
@@ -149,25 +180,6 @@ hbox#browser {
 ======================================================================
 */
 
-/* Removes navbar buttons when not hovering over them*/
-:root:not([customizing]) #nav-bar toolbarbutton
- {
-    margin-left: -28px !important;
-    opacity: 0 !important;
-    transform: scale(.85, .85) !important;
-    pointer-events: none !important;
-    transition: all 100ms var(--animation-easing-function) !important;
-}
-
-:root:not([customizing]) :hover > #nav-bar toolbarbutton,
-:root:not([customizing]) #navigator-toolbox:focus-within #nav-bar toolbarbutton,
-:root:not([customizing]) :hover > #titlebar toolbarbutton {
-    transform: scale(1, 1) !important;
-opacity:1 !important;
-margin-left:0 !important;
-pointer-events: auto !important;
-}
-
 
 #urlbar-container {
 	margin: var(--urlbar-container-margin) !important;
@@ -177,9 +189,14 @@ pointer-events: auto !important;
 	color: inherit !important;
 	fill: var(--color-fg) !important;
 	fill-opacity: 1 !important;
+	margin-right: -5px !important;
+	background: none !important;
 }
+
 #nav-bar-customization-target {
-	background-color: var(--color-bg) !important;
+	border-top: 1px solid #5f6068;
+	border-left: 1px solid #4a4b51;
+	background: linear-gradient(#3d3e43, #373739);
 }
 
 /* This positions the tabs under the navaigator container */
@@ -188,23 +205,24 @@ pointer-events: auto !important;
 }
 
 #back-button {
-	list-style-image: url("left-arrow.svg") !important;
+	/*list-style-image: url("left-arrow.svg") !important; */
 	margin-left: var(--margin-before-back-button) !important;
 	opacity: 1 !important;
+	display: none !important;
 }
 
 #forward-button {
-	list-style-image: url("right-arrow.svg") !important;
+	/* list-style-image: url("right-arrow.svg") !important; */
 	opacity: 1 !important;
+	display: none !important;
 }
 
 #navigator-toolbox {
 	--tabs-border-color: var(--color-bg) !important;
 	background-color: var(--color-bg) !important;
 	border: none !important;
-	border: none !important;
 	box-shadow: none !important;
-	height: var(--tabs-container-height); /* This controls the height of the container that holds the tabs */
+	max-height: 20px !important;
 }
 
 :root:not([uidensity="compact"]):not([chromehidden~="toolbar"]) #PanelUI-button {
@@ -217,8 +235,6 @@ pointer-events: auto !important;
 
 /* Hacky way to make the url input bar centered */
 input#urlbar-input {
-	caret-color: transparent !important;
-	width: 99999px !important;
 	text-align: center !important;
 	font-weight: var(--urlbar-text-weight) !important;
 	font-family: var(--urlbar-text-font) !important;
@@ -227,6 +243,7 @@ input#urlbar-input {
 
 hbox#urlbar[focused=true] {
 	color: var(--color-urlbar-text) !important;
+	background-color: var(--color-urlbar-buttons-bg) !important;
 }
 
 #urlbar:not(.megabar),
@@ -242,12 +259,6 @@ hbox#urlbar[focused=true] {
 	display: none !important;
 }
 
-#urlbar {
-	background-color: var(--color-fg);
-	background: none !important;
-	border: none !important;
-	margin: var(--margin-around-urlbar) !important;
-}
 
 .urlbar-one-offs-header-label {
 	color: var(--color-fg) !important;
@@ -266,11 +277,7 @@ hbox#urlbar[focused=true] {
 /* This centers and reduces the width of the urlbar list */
 .urlbarView:not(.megabar) {
 	box-shadow: none !important;
-	background-color: var(--color-bg) !important;
-	width: var(--urlbar-list-width) !important;
-	margin-left: calc(var(--urlbar-list-width) / 2) !important;
-	border-radius: 0 8px 8px !important;
-	box-shadow: 0px 0px 40px rgba(0, 0, 0, 25%) !important;
+	background-color: var(--color-urlbar-buttons-bg) !important;
 }
 
 .urlbarView-favicon {
@@ -294,6 +301,7 @@ hbox#urlbar[focused=true] {
 
 .panel-arrowcontent {
 	margin: 0 !important;
+	display: none !important;
 }
 
 :root:not([uidensity="compact"]) #back-button > .toolbarbutton-icon {
@@ -301,137 +309,37 @@ hbox#urlbar[focused=true] {
 }
 
 
-
-#PersonalToolbar, 
-#identity-box,
-#tracking-protection-icon-container,
-.urlbar-icon, .tab-icon-image {
-    display: none !important;
-}
-
 /*
 ======================================================================
 * Rules for Tabs
 ======================================================================
+,
+.tabbrowser-tab .tab-icon-image 
 */
-.tab-line,
+
 .tab-background,
 .tabbrowser-tab::before,
-.tabbrowser-tab::after,
-.tabbrowser-tab .tab-icon-image {
+.tabbrowser-tab::after{
 	display: none !important;
 }
 
-.tab-loading-burst {
-	border-radius: var(--tab-height) !important;
+#tabbrowser-arrowscrollbox {
+	display: none !important;
 }
 
-.tabbrowser-tab {
-	margin-inline-end: var(--gap-between-tabs) !important;
-	--tab-line-color: none !important;
-	background-color: var(--color-bg) !important;
-	background-image: linear-gradient(to left, var(--color-tab-normal-start), var(--color-tab-normal-end)) !important;
-	border-radius: var(--tab-height) !important;
-	max-height: var(--tab-height) !important;
-	min-height: var(--tab-height) !important;
-	transition: opacity 0.25, background-image 0.25 !important;
+#tabbrowser-tabs tab {
+	min-height: 0px !important;
+	max-height: 30px !important;
+	min-width: var(--tab-width) !important;
+	text-shadow: none !important;
 }
 
-.tabbrowser-tab[pinned=true] {
-	background-image: linear-gradient(
-		to left,
-		var(--color-tab-pinned-normal),
-		var(--color-tab-pinned-normal)
-	) !important;
-}
-
-.tab-content {
-	text-align: center;
+.tab[selected="true"] {
+	color:var(--color-fg-active) !important;
 	font-family: var(--tab-text-font) !important;
-	font-size: var(--tab-text-font-size) !important;
-}
-
-.tabbrowser-tab:hover {
-	background-image: linear-gradient(77deg, var(--color-tab-hover-start), var(--color-tab-hover-end)) !important;
-	border-radius: var(--tab-height) !important;
-}
-
-/* Pinned tabs */
-/* TODO: Find a way to add spacing between the pinned tabs when tab list scrolling is triggered. Adding a margin just screws everything up */
-.tabbrowser-tab:hover[pinned="true"] {
-	background-image: linear-gradient(to left, var(--color-tab-hover-start), var(--color-tab-hover-end)) !important;
-}
-
-.tabbrowser-tab[pinned="true"] {
-	color: #1d1d1d !important;
-	min-width: var(--tab-height) !important;
-	max-width: var(--tab-height) !important;
-}
-
-.tabbrowser-tab[selected="true"] {
-	background-image: linear-gradient(77deg, var(--color-tab-active-start), var(--color-tab-active-end)) !important;
-	border: none !important;
-	border-radius: var(--tab-height);
-}
-
-/* The round pinned tab favicon */
-.tabbrowser-tab[pinned="true"] .tab-icon-image {
-	display: inline-block !important;
-	align-items: center !important;
-	min-width: var(--pinned-tab-favicon-dim) !important;
-	min-height: var(--pinned-tab-favicon-dim) !important;
-}
-
-.tabbrowser-tab[pinned="true"] .tab-label-container {
-	display: none !important;
-}
-
-.tabbrowser-tab[pinned="true"][selected="true"] {
-	background-image: linear-gradient(
-		to left,
-		var(--color-tab-pinned-active),
-		var(--color-tab-pinned-active)
-	) !important;
-}
-
-toolbarbutton#tabs-newtab-button {
-  background-image: none !important;
-  padding-left: 10px !important;
-  margin: -10px !important;
-}
-
-#tabs-newtab-button:hover {
-	background: none !important;
-	background-image: none !important;
-	border-radius: 50%;
-}
-
-.tab-close-button {
-	opacity: 0;
-	transition: opacity 0.25s;
-}
-
-.tab-stack {
-	display: flex !important;
-	justify-content: center !important;
-}
-
-/* Modify these values to tweak the start point of the tab list */
-.tabbrowser-arrowscrollbox {
-
-	margin-inline-start: var(--margin-before-tab-list) !important;
-	margin-inline-end: var(--margin-after-tab-list) !important;
-}
-
-/* Hides tab bar when there's only one tab. */
-#main-window[titlepreface^="[1] "] .toolbar-items {
-  visibility: collapse;
-}
-
-#main-window[titlepreface^="[1] "] #TabsToolbar {
-  min-height: 0 !important;
-}
-
-#main-window[titlepreface^="[1] "] #navigator-toolbox {
-  height: 0 !important;
+	font-weight: var(--tab-text-weight) !important;
+} tab:not([selected="true"]) {
+	color:var(--color-fg-inactive) !important;
+	font-family: var(--tab-text-font) !important;
+	font-weight: var(--tab-text-weight) !important;
 }
