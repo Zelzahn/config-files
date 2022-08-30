@@ -8,12 +8,12 @@ retVal=""
 
 if [ "$(echo $playPauze | grep Play)" ]
 then
-	retVal+=" ▶"
+	retVal+=" 喇"
 fi
 
 if [ "$(echo $playPauze | grep Pause)" ]
 then
-	retVal+=" ⏸"
+	retVal+=" "
 fi
 
 if [ "$artist" ];then
